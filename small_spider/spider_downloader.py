@@ -12,8 +12,6 @@ HEADERS = [
     ]
 
 
-
-
 def html_content(url, file_type='html'):
     if url is None:
         raise TypeError("The url type error, url must be string type, not None type.")
@@ -21,7 +19,7 @@ def html_content(url, file_type='html'):
         raise TypeError("The url type error, url must be string type.")
     else:
         if file_type != 'html':
-            raise ValueError("The 'type' must be html.")
+            raise ValueError("The 'file_type' must be html.")
         response = requests.get(url=url, headers={'User-Agent': random.choice(HEADERS)})
         response.encoding = response.apparent_encoding
         return response.text
@@ -31,7 +29,12 @@ def html_content(url, file_type='html'):
 
 
 if __name__ == "__main__":
+    # test code
     from bs4 import BeautifulSoup
-    soup = BeautifulSoup(html_content(url='http://www.baidu.com'), 'html.parser')
-    print(soup.title.string)
+    html = html_content(url='http://www.baidu.com')
+    if html is None:
+        print("Can't get the html text.")
+    else:
+        soup = BeautifulSoup(html, 'html.parser')
+        print(soup.title.string)
 
