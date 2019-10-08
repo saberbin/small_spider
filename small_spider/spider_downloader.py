@@ -46,12 +46,13 @@ def img_content(img_url, file_type='jpg'):
     else:
         img_types = ('jpg', 'png', 'jpeg')
         if file_type not in img_types:
+            warnings.warn("The 'file_type' must be 'jpg','png', or other image file types.")
             img_type = img_url.split('.')[-1]
             if img_type not in img_types:
                 file_type = 'jpg'
             else:
                 file_type = img_type
-            warnings.warn("The 'file_type' must be 'jpg','png', or other image file types.")
+            
         response = requests.get(url=img_url, headers={'User-Agent': random.choice(HEADERS)})
         # print(response.status_code)
         # 返回二进制数据
