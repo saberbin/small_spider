@@ -71,9 +71,10 @@ if __name__ == "__main__":
         print(soup.title.string)
 
     img_url = 'https://w.wallhaven.cc/full/76/wallhaven-76okoo.png'
-    img_type = img_url.split('.')[-1]
+    file_name = img_url.split('/')[-1]
+    # img_type = img_url.split('.')[-1]
     img_data = img_content(img_url=img_url)
-    with open('test.{}'.format(img_type), 'wb') as f:
+    with open(file_name, 'wb') as f:
         f.write(img_data)
     print('end')
 
