@@ -1,6 +1,26 @@
 from bs4 import BeautifulSoup
 import requests
-from spider_downloader import img_content, html_content
+from spider_downloader import img_content, html_content, get_content
+
+
+def test_main():
+    urls = [
+            'http://www.baidu.com',
+            'https://w.wallhaven.cc/full/95/wallhaven-95ddex.png'
+        ]
+    i = 0
+    for url in urls:
+        content = get_content(url)
+        if i == 0:
+            with open('a.html', 'wb')as f:
+                f.write(content)
+        else:
+            with open('a.jpg', 'wb') as f:
+                f.write(content)
+        i = 1
+        
+    print('end.')
+
 
 
 def main():
@@ -18,4 +38,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    test_main()

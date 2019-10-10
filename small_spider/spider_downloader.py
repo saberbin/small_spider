@@ -38,6 +38,25 @@ def html_content(url, file_type='html'):
     return None
 
 
+def get_content(url):
+    """
+    url: 需要请求的url路径
+    """
+    # 如果传入的url的类型错误，则抛出类型异常
+    if url is None:
+        raise TypeError("The url type error, url must be string type, not None type.")
+    elif type(url) != type('string'):
+        raise TypeError("The url type error, url must be string type.")
+    else:
+        # 定制随机请求头，获取response
+        response = requests.get(url=url, headers={'User-Agent': random.choice(HEADERS)})
+        response.encoding = response.apparent_encoding
+        # 返回html的字符串格式数据
+        return response.content
+    return None
+
+
+
 def img_content(img_url, file_type='jpg'):
     if img_url is None:
         raise TypeError("The url type error, url must be string type, not None type.")
@@ -72,6 +91,7 @@ def img_downloader(img_url, file_type='jpg'):
             img_type = img_url.split('.')[-1]
             if img_type not in img_types:
                 file_type = 'jpg'
+                img_type = file_type
             else:
                 file_type = img_type
 
