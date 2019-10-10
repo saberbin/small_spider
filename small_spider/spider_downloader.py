@@ -60,6 +60,34 @@ def img_content(img_url, file_type='jpg'):
     return None
 
 
+def img_downloader(img_url, file_type='jpg'):
+    if img_url is None:
+        raise TypeError("The url type error, url must be string type, not None type.")
+    elif type(img_url) != type('string'):
+        raise TypeError("The url type error, url must be string type.")
+    else:
+        img_types = ('jpg', 'png', 'jpeg')
+        if file_type not in img_types:
+            warnings.warn("The 'file_type' must be 'jpg','png', or other image file types.")
+            img_type = img_url.split('.')[-1]
+            if img_type not in img_types:
+                file_type = 'jpg'
+            else:
+                file_type = img_type
+
+        file_name = file_name = img_url.split('/')[-1]
+            
+        response = requests.get(url=img_url, headers={'User-Agent': random.choice(HEADERS)})
+        
+        # print(response.status_code)
+        # save the image file and return sucessful code
+        with open(file_name, 'wb') as f:
+            f.write(response.content)
+        return 200
+    return None
+
+
+
 if __name__ == "__main__":
     # test code
     from bs4 import BeautifulSoup
@@ -76,5 +104,14 @@ if __name__ == "__main__":
     img_data = img_content(img_url=img_url)
     with open(file_name, 'wb') as f:
         f.write(img_data)
+
+
+
+    print('-' * 25)
+    image_url = 'https://w.wallhaven.cc/full/zm/wallhaven-zmq6yy.jpg'
+    img_type = image_url.split('.')[-1]
+    sucessful_flag = img_downloader(image_url, file_type=img_type)
+    if sucessful_flag != 200:
+        print('download error..')
     print('end')
 
