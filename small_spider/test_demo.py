@@ -38,4 +38,10 @@ def main():
 
 
 if __name__ == "__main__":
-    test_main()
+    # test_main()
+    from random import randint
+
+    x = [randint(0, 100) for i in range(10)]
+    y = [randint(0, 100) for i in range(10)]
+    print(x)
+    print(y)
