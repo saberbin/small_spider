@@ -69,14 +69,14 @@ class SpiderDownloader(object):
                     file_type = 'jpg'
                 else:
                     file_type = img_type
-                
+
             response = requests.get(url=img_url, headers={'User-Agent': random.choice(self.HEADERS)})
             # print(response.status_code)
             # 返回二进制数据
             return response.content
         return None
 
-    def img_downloader(self, img_url, file_type='jpg'):
+    def img_downloader(self, img_url, file_type='jpg', file_name=None):
         if img_url is None:
             raise TypeError("The url type error, url must be string type, not None type.")
         elif type(img_url) != type('string'):
@@ -92,10 +92,10 @@ class SpiderDownloader(object):
                 else:
                     file_type = img_type
 
-            file_name = file_name = img_url.split('/')[-1]
-                
+            file_name = img_url.split('/')[-1]
+
             response = requests.get(url=img_url, headers={'User-Agent': random.choice(self.HEADERS)})
-            
+
             # print(response.status_code)
             # save the image file and return sucessful code
             with open(file_name, 'wb') as f:
