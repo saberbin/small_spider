@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import random
 import time
-import sys
 
 
 HEADERS = (
@@ -13,6 +12,7 @@ HEADERS = (
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'
         )
+LETTER = [chr(i) for i in range(97,123)]
 
 
 def get_content(url):
@@ -24,7 +24,8 @@ def get_content(url):
         print('Got a error:', e)
         return None
 
-def main(file_name):
+def main():
+    global LETTER
 
     base_url = 'https://cn.bing.com'
 
@@ -42,14 +43,12 @@ def main(file_name):
     pic_url = base_url + pic_path
 
     file_path = '.\\img\\'
-    if not file_name:
-        file_name = '%6d'%random.randint(10000, 999999)
+    file_name = time.strftime("%Y-%m-%d", time.localtime()) + '_' + random.choice(LETTER)
     img_content = get_content(pic_url).content
     with open(file_path + file_name + '.jpg', 'wb') as f:
         f.write(img_content)
 
 
 if __name__ == '__main__':
-    file_name = sys.argv[1]
-    main(file_name)
+    main()
     print('end')
