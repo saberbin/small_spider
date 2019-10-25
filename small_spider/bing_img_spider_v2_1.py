@@ -50,5 +50,6 @@ def main():
 
 
 if __name__ == '__main__':
+    print("Start to download the image...")
     main()
     print('end')
