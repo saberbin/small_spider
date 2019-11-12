@@ -1,0 +1,5 @@
+Opera: Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14;
+Firefox: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:33.0) Gecko/20120101 Firefox/33.0;
+Trident: Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0);
+Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36;
+Safari: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A;
