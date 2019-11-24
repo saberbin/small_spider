@@ -44,7 +44,7 @@ def get_html(url, cookies=None, headers=None):
     if headers is None:
         headers = random.choice(HEADERS)
     try:
-        r = requests.get(url, headers={'User-Agent': headers}, cookies=cookie)
+        r = requests.get(url, headers={'User-Agent': headers}, cookies=cookies)
         r.encoding = r.apparent_encoding
         return r.text
     except Exception as e:
@@ -129,7 +129,7 @@ def main():
     # 遍历图片的url列表，取出每张图片的链接，下载图片
     for img in imgs:
         # 默认不传入名字，使用网站的图片链接的名字保存图片
-        download_img(img_url, file_path=img_path, file_name=None)
+        download_img(img, file_path=img_path, file_name=None)
         time.sleep(random.randint(3, 6))  # 随机让程序休眠3-6分钟，给服务器喘口气
     print('download over.')
 
