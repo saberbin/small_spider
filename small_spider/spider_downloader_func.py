@@ -38,6 +38,30 @@ def html_content(url, file_type='html'):
     return None
 
 
+def html_contents(urls, file_type='html'):
+    """
+    urls: 需要请求的url列表
+    file_type: 返回的数据类型，为html格式的字符串
+    """
+    # 如果传入的url的类型错误，则抛出类型异常
+    if urls is None:
+        raise TypeError("The url type error, url must be string type, not None type.")
+    elif type(urls) != type('string'):
+        raise TypeError("The url type error, url must be string type.")
+    else:
+        # 如果file_type不为‘html’， 则抛出警告
+        if file_type != 'html':
+            warnings.warn("The 'file_type' must be html.")
+            file_type = 'html'  # 将file_type赋值为'html'
+            # raise ValueError("The 'file_type' must be html.")
+        # 定制随机请求头，获取response
+        response = requests.get(url=urls, headers={'User-Agent': random.choice(HEADERS)})
+        response.encoding = response.apparent_encoding
+        # 返回html的字符串格式数据
+        return response.text
+    return None
+
+
 def get_content(url):
     """
     url: 需要请求的url路径
